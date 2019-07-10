@@ -10,7 +10,7 @@ namespace WebApplication1.Hubs
         {
             await Clients.All.SendAsync("ReceiveCard", card, leftOrRight, opponentCard);
         }
-        public async Task SendGame()
+        public async Task SendGame() //Test Function
         {
             Player player1 = new Player("Hi", "fadfas");
             Player player2 = new Player("Hello", "test");
