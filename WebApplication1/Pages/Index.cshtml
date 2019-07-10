@@ -1,0 +1,86 @@
+﻿@page
+<style>
+    .card {
+        font-size: 180px;
+        display: inline-block;
+    }
+
+    .hand {
+        text-align: center;
+    }
+</style>
+
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/client.js"></script>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div style="padding: 2px">
+            <h3 id="name">User</h3>
+            <input type="text" id="usernameTb" class="form-control" />
+            <span class="help-block" id="alert">Please enter your name and click <strong>join</strong> to begin playing a match</span>
+            <input type="button" id="join" value="join" class="btn btn-primary" onclick="testClick()" />
+
+        </div>
+    </div>
+</div>
+
+<div id="test">
+
+</div>
+
+<div class="hand" id="opponentHand">
+    <div class="card" id="opponentCard5">
+        🂠
+    </div>
+    <div class="card" id="opponentCard4">
+        🂠
+    </div>
+    <div class="card" id="opponentCard3">
+        🂠
+    </div>
+    <div class="card" id="opponentCard2">
+        🂠
+    </div>
+    <div class="card" id="opponentCard1">
+        🂠
+    </div>
+</div>
+
+<div class="hand">
+    <div class="card" id="leftDraw">
+        🂠
+    </div>
+    <div class="card" id="leftDiscard" ondrop="drop(event)" ondragover="allowDrop(event)">
+        🂢
+    </div>
+    <div class="card" id="rightDiscard">
+        🂢
+    </div>
+    <div class="card" id="rightDraw">
+        🂠
+    </div>
+</div>
+<div class="hand" id="playerHand">
+
+    <div class="card" id="playerCard1" ondragstart="drag(event)">
+        🂡
+    </div>
+    <div class="card" id="playerCard2" ondragstart="drag(event)">
+        🂢
+    </div>
+    <div class="card" id="playerCard3" ondragstart="drag(event)">
+        🂣
+    </div>
+    <div class="card" id="playerCard4" ondragstart="drag(event)">
+        🂤
+    </div>
+    <div class="card" id="playerCard5" ondragstart="drag(event)">
+        🂥
+    </div>
+    <div></div>
+    <div class="card" id="playerDeck">
+        🂠
+    </div>
+</div>
