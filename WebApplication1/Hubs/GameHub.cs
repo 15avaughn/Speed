@@ -13,27 +13,28 @@ namespace WebApplication1.Hubs
 {
     public class GameHub : Hub
     {
-
-        private static readonly ConcurrentBag<Player> players = new ConcurrentBag<Player>();
-        private static readonly ConcurrentBag<Game> games = new ConcurrentBag<Game>();
+       
+        private static readonly ConcurrentDictionary<String, Player> players = new ConcurrentDictionary<String, Player>();
+        private static readonly ConcurrentDictionary<String, Game> games = new ConcurrentDictionary<String, Game>();
 
         public override Task OnConnectedAsync()
         {
+            
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
             
-            var game = games?.FirstOrDefault(j => j.Player1.ConnectionId == Context.ConnectionId || j.Player2.ConnectionId == Context.ConnectionId);
+            var game = games?.Values.FirstOrDefault(j => j.Player1.ConnectionId == Context.ConnectionId || j.Player2.ConnectionId == Context.ConnectionId);
             if (game == null)
             {
                 
-                var playerWithoutGame = players.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+                var playerWithoutGame = players.Values.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
                 if (playerWithoutGame != null)
                 {
-                    
-                    Remove<Player>(players, playerWithoutGame);
+
+                    players.TryRemove(playerWithoutGame.ConnectionId, out _);
                 }
 
                 return null;
@@ -42,7 +43,7 @@ namespace WebApplication1.Hubs
             
             if (game != null)
             {
-                Remove<Game>(games, game);
+                games.TryRemove(game.Player1.ConnectionId, out _);
             }
 
             var player = game.Player1.ConnectionId == Context.ConnectionId ? game.Player1 : game.Player2;
@@ -52,13 +53,13 @@ namespace WebApplication1.Hubs
                 return null;
             }
 
-            Remove<Player>(players, player);
+            players.TryRemove(player.ConnectionId, out _);
 
             if (player.Opponent != null)
             {
                 return OnOpponentDisconnected(player.Opponent.ConnectionId, player.Name);
             }
-
+             
             return base.OnDisconnectedAsync(exception);
         }
 
@@ -69,21 +70,17 @@ namespace WebApplication1.Hubs
         
         public void OnRegistrationComplete(string connectionId)
         {
-            //// Notify this connection id that the registration is complete.
             this.Clients.Client(connectionId).SendAsync("registrationComplete");
         }
 
         
         public void RegisterPlayer(string name)
         {
-            var player = players?.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+            var player = players?.Values.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             if (player == null)
             {
                 player = new Player(name) { ConnectionId = Context.ConnectionId, IsPlaying = false, IsSearchingOpponent = false, RegisterTime = DateTime.UtcNow };
-                if (!players.Any(j => j.Name == name))
-                {
-                    players.Add(player);
-                }
+                players.TryAdd(player.ConnectionId, player);
             }
             else
             {
@@ -96,7 +93,7 @@ namespace WebApplication1.Hubs
 
         public void FindOpponent()
         {
-            var player = players.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+            var player = players.Values.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             if (player == null)
             {
                 Clients.Client(Context.ConnectionId).SendAsync("test");
@@ -105,7 +102,7 @@ namespace WebApplication1.Hubs
 
             player.IsSearchingOpponent = true;
 
-            var opponent = players.Where(x => x.ConnectionId != Context.ConnectionId && x.IsSearchingOpponent && !x.IsPlaying).OrderBy(x => x.RegisterTime).FirstOrDefault();
+            var opponent = players.Values.Where(x => x.ConnectionId != Context.ConnectionId && x.IsSearchingOpponent && !x.IsPlaying).OrderBy(x => x.RegisterTime).FirstOrDefault();
             if (opponent == null)
             {
                 Clients.Client(Context.ConnectionId).SendAsync("opponentNotFound");
@@ -117,19 +114,18 @@ namespace WebApplication1.Hubs
 
             opponent.IsPlaying = true;
             opponent.IsSearchingOpponent = false;
-
             player.Opponent = opponent;
             opponent.Opponent = player;
 
             Clients.Client(Context.ConnectionId).SendAsync("opponentFound", opponent.Name);
             Clients.Client(opponent.ConnectionId).SendAsync("opponentFound", player.Name);
 
-            games.Add(new Game(player, opponent));
+            games.TryAdd(player.ConnectionId, new Game(player, opponent));
         }
 
         private void Remove<T>(ConcurrentBag<T> players, T playerWithoutGame)
         {
-            players = new ConcurrentBag<T>(players?.Except(new[] { playerWithoutGame }));
+            players = new ConcurrentBag<T>(players.Except(new[] { playerWithoutGame }));
         }
 
 

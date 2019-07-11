@@ -12,7 +12,7 @@ connection.on("ReceiveCard", function (card, leftOrRight, opponentCard) {
 });
 
 connection.on("test", function () {
-    $("#test").html("<br/><span><strong> Hey " + playerName + "! You already exist! </strong></span>");
+    $("#test").html("<br/><span><strong>Something went wrong.</strong></span>");
 });
 
 connection.on("ReceiveGame", function (game) {
@@ -41,8 +41,7 @@ connection.on('opponentNotFound', data => {
 connection.on('opponentDisconnected', data => {
     $("#register").hide();
     $('#game').hide();
-    $('#test').html(" ");
-    $('#divInfo').html("<br/><span><strong>Hey " + playerName + "! Your opponent disconnected or left the battle! You are the winner ! Hip Hip Hurray!!!</strong></span>");
+    $('#test').html("<br/><span><strong>Hey " + playerName + "! Your opponent disconnected or left the battle! You are the winner ! Hip Hip Hurray!!!</strong></span>");
 
 });
 
