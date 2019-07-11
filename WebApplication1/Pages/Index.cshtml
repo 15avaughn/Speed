@@ -10,77 +10,100 @@
     }
 </style>
 
-<script src="~/lib/signalr/dist/browser/signalr.js"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script src="~/js/client.js"></script>
-
-<div class="row">
-    <div class="col-lg-2">
-        <div style="padding: 2px">
-            <h3 id="name">User</h3>
-            <input type="text" id="usernameTb" class="form-control" />
-            <span class="help-block" id="alert">Please enter your name and click <strong>join</strong> to begin playing a match</span>
-            <input type="button" id="join" value="join" class="btn btn-primary" onclick="testClick()" />
-
+<div id="register">
+    <fieldset>
+        <legend>Register</legend>
+        <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="button" class="btn btn-primary" id="btnRegister">Register</button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div id="findOpponent">
+    <fieldset>
+        <legend>Find a player to play against!</legend>
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" id="btnFindOpponentPlayer" value="Find Opponent Player" />
+        </div>
+    </fieldset>
+</div>
+<div id="findingOpponent">
+    <fieldset>
+        <legend>Its lonely here!</legend>
+        <div class="form-group">
+            Looking for an opponent player. Waiting for someone to join!
+        </div>
+    </fieldset>
 </div>
 
 <div id="test">
 
 </div>
+<div id="game">
+    <div class="hand" id="opponentHand">
+        <div class="card" id="opponentCard5">
+            🂠
+        </div>
+        <div class="card" id="opponentCard4">
+            🂠
+        </div>
+        <div class="card" id="opponentCard3">
+            🂠
+        </div>
+        <div class="card" id="opponentCard2">
+            🂠
+        </div>
+        <div class="card" id="opponentCard1">
+            🂠
+        </div>
+    </div>
 
-<div class="hand" id="opponentHand">
-    <div class="card" id="opponentCard5">
-        🂠
+    <div class="hand">
+        <div class="card" id="leftDraw">
+            🂠
+        </div>
+        <div class="card" id="leftDiscard" ondrop="drop(event)" ondragover="allowDrop(event)">
+            🂢
+        </div>
+        <div class="card" id="rightDiscard">
+            🂢
+        </div>
+        <div class="card" id="rightDraw">
+            🂠
+        </div>
     </div>
-    <div class="card" id="opponentCard4">
-        🂠
-    </div>
-    <div class="card" id="opponentCard3">
-        🂠
-    </div>
-    <div class="card" id="opponentCard2">
-        🂠
-    </div>
-    <div class="card" id="opponentCard1">
-        🂠
+    <div class="hand" id="playerHand">
+
+        <div class="card" id="playerCard1" ondragstart="drag(event)">
+            🂡
+        </div>
+        <div class="card" id="playerCard2" ondragstart="drag(event)">
+            🂢
+        </div>
+        <div class="card" id="playerCard3" ondragstart="drag(event)">
+            🂣
+        </div>
+        <div class="card" id="playerCard4" ondragstart="drag(event)">
+            🂤
+        </div>
+        <div class="card" id="playerCard5" ondragstart="drag(event)">
+            🂥
+        </div>
+        <div></div>
+        <div class="card" id="playerDeck">
+            🂠
+        </div>
     </div>
 </div>
 
-<div class="hand">
-    <div class="card" id="leftDraw">
-        🂠
-    </div>
-    <div class="card" id="leftDiscard" ondrop="drop(event)" ondragover="allowDrop(event)">
-        🂢
-    </div>
-    <div class="card" id="rightDiscard">
-        🂢
-    </div>
-    <div class="card" id="rightDraw">
-        🂠
-    </div>
-</div>
-<div class="hand" id="playerHand">
 
-    <div class="card" id="playerCard1" ondragstart="drag(event)">
-        🂡
-    </div>
-    <div class="card" id="playerCard2" ondragstart="drag(event)">
-        🂢
-    </div>
-    <div class="card" id="playerCard3" ondragstart="drag(event)">
-        🂣
-    </div>
-    <div class="card" id="playerCard4" ondragstart="drag(event)">
-        🂤
-    </div>
-    <div class="card" id="playerCard5" ondragstart="drag(event)">
-        🂥
-    </div>
-    <div></div>
-    <div class="card" id="playerDeck">
-        🂠
-    </div>
-</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/client.js"></script>

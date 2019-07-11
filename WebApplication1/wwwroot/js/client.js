@@ -1,7 +1,11 @@
 ﻿"use strict";
-
+$("#register").show();
+$("#findOpponent").hide();
+$("#findingOpponent").hide();
+$("#game").hide();
 var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 var testing = "";
+var playerName = "";
 connection.on("ReceiveCard", function (card, leftOrRight, opponentCard) {
     document.getElementById(leftOrRight).innerHTML = card;
     document.getElementById(opponentCard).remove();
@@ -10,6 +14,41 @@ connection.on("ReceiveCard", function (card, leftOrRight, opponentCard) {
 connection.on("ReceiveGame", function (game) {
     testing = game + " " + testing;
     document.getElementById("test").innerHTML = testing;
+});
+
+connection.on('registrationComplete', data => {
+    $("#register").hide();
+    $("#findOpponent").show();
+});
+
+connection.on('opponentFound', (data, image) => {
+    $('#findOpponent').hide();
+    $('#findingOpponent').hide();
+    $('#game').show();
+    $('#test').html("<br/><span><strong> Hey " + playerName + "! You are playing against <i>" + data + "</i></strong></span>");
+    
+});
+
+connection.on('opponentNotFound', data => {
+    $('#findOpponent').hide();
+    $('#findingOpponent').show();
+});
+
+connection.on('opponentDisconnected', data => {
+    $("#register").hide();
+    $('#game').hide();
+    $('#test').html(" ");
+    $('#divInfo').html("<br/><span><strong>Hey " + playerName + "! Your opponent disconnected or left the battle! You are the winner ! Hip Hip Hurray!!!</strong></span>");
+
+});
+
+$("#btnRegister").click(function () {
+    playerName = $('#name').val();
+    connection.invoke('RegisterPlayer', playerName);
+});
+
+$("#btnFindOpponentPlayer").click(function () {
+    connection.invoke('FindOpponent');
 });
 
 function allowDrop(ev) {
