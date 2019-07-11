@@ -32,7 +32,7 @@ function drop(ev) {
 }
 
 function testClick() {
-    connection.invoke("SendGame").catch(function (err) {
+    connection.invoke("SendGame", "test").catch(function (err) {
         return console.error(err.toString());
     });
 }

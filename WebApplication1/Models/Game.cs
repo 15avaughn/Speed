@@ -46,8 +46,8 @@ namespace WebApplication1.Models
             return dealingCards;
         }
 
-        public Player Player { get; set; }
-        public Player Opponent { get; set; }
+        public Player Player1 { get; set; }
+        public Player Player2 { get; set; }
 
         public Deck Deck { get; set; }
         public SpeedFlip SpeedFlipL { get; set; }
@@ -57,15 +57,15 @@ namespace WebApplication1.Models
 
         public Game(Player player1, Player player2)
         {
-            Player = player1;
-            Opponent = player2;
+            Player1 = player1;
+            Player2 = player2;
             Deck = new Deck();
             SpeedFlipL = DealSpeedFlip(Deck);
             SpeedFlipR = DealSpeedFlip(Deck);
-            Player.Deck = DealPlayerDeck(Deck);
-            Player.Hand = DealHand(Player.Deck);
-            Opponent.Deck = DealPlayerDeck(Deck);
-            Opponent.Hand = DealHand(Opponent.Deck);
+            Player1.Deck = DealPlayerDeck(Deck);
+            Player1.Hand = DealHand(Player1.Deck);
+            Player2.Deck = DealPlayerDeck(Deck);
+            Player2.Hand = DealHand(Player2.Deck);
             SpeedPileL = DealSpeedPile(Deck);
             SpeedPileR = DealSpeedPile(Deck);
         }
