@@ -67,7 +67,7 @@ namespace WebApplication1.Hubs
             return Clients.Client(connectionId).SendAsync("opponentDisconnected", playerName);
         }
         
-        public void OnRegisterationComplete(string connectionId)
+        public void OnRegistrationComplete(string connectionId)
         {
             //// Notify this connection id that the registration is complete.
             this.Clients.Client(connectionId).SendAsync("registrationComplete");
@@ -91,7 +91,7 @@ namespace WebApplication1.Hubs
                 player.IsSearchingOpponent = false;
             }
 
-            this.OnRegisterationComplete(Context.ConnectionId);
+            this.OnRegistrationComplete(Context.ConnectionId);
         }
 
         public void FindOpponent()
@@ -99,6 +99,7 @@ namespace WebApplication1.Hubs
             var player = players.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
             if (player == null)
             {
+                Clients.Client(Context.ConnectionId).SendAsync("test");
                 return;
             }
 

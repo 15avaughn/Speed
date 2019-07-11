@@ -11,6 +11,10 @@ connection.on("ReceiveCard", function (card, leftOrRight, opponentCard) {
     document.getElementById(opponentCard).remove();
 });
 
+connection.on("test", function () {
+    $("#test").html("<br/><span><strong> Hey " + playerName + "! You already exist! </strong></span>");
+});
+
 connection.on("ReceiveGame", function (game) {
     testing = game + " " + testing;
     document.getElementById("test").innerHTML = testing;
@@ -68,12 +72,6 @@ function drop(ev) {
         return console.error(err.toString());
     });
     document.getElementById(data).remove();
-}
-
-function testClick() {
-    connection.invoke("SendGame", "test").catch(function (err) {
-        return console.error(err.toString());
-    });
 }
 
 connection.start().then(function () {
