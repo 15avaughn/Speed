@@ -143,7 +143,7 @@ namespace WebApplication1.Hubs
 
 
 
-        public async Task SendCard(string card, string leftOrRight, string opponentCard)
+        public async Task SendCard(string card, string leftOrRight, string opponentCard) //Also Test Function (for now).
         {
             await Clients.All.SendAsync("ReceiveCard", card, leftOrRight, opponentCard);
         }
