@@ -47,57 +47,38 @@
 
 </div>
 <div id="game">
-    <div class="hand" id="opponentHand">
-        <div class="card" id="opponentCard5">
-            🂠
-        </div>
-        <div class="card" id="opponentCard4">
-            🂠
-        </div>
-        <div class="card" id="opponentCard3">
-            🂠
-        </div>
-        <div class="card" id="opponentCard2">
-            🂠
-        </div>
-        <div class="card" id="opponentCard1">
-            🂠
-        </div>
-    </div>
+    
 
-    <div class="hand">
-        <div class="card" id="leftDraw">
+    <div class="hand" id="opponentHand">
+        <div class="card" id="opponentCard1" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂠
         </div>
-        <div class="card" id="leftDiscard" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="card" id="opponentCard2" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂢
         </div>
-        <div class="card" id="rightDiscard">
+        <div class="card" id="opponentCard3" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂢
         </div>
-        <div class="card" id="rightDraw">
+        <div class="card" id="opponentCard4" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂠
         </div>
     </div>
     <div class="hand" id="playerHand">
 
-        <div class="card" id="playerCard1" ondragstart="drag(event)">
+        <div class="card" id="playerCard1" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂡
         </div>
-        <div class="card" id="playerCard2" ondragstart="drag(event)">
+        <div class="card" id="playerCard2" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂢
         </div>
-        <div class="card" id="playerCard3" ondragstart="drag(event)">
+        <div class="card" id="playerCard3" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂣
         </div>
-        <div class="card" id="playerCard4" ondragstart="drag(event)">
+        <div class="card" id="playerCard4" ondrop="drop(event)" ondragover="allowDrop(event)">
             🂤
         </div>
-        <div class="card" id="playerCard5" ondragstart="drag(event)">
-            🂥
-        </div>
         <div></div>
-        <div class="card" id="playerDeck">
+        <div class="card" id="playerDeck" ondragstart="drag(event)" draggable="true">
             🂠
         </div>
     </div>

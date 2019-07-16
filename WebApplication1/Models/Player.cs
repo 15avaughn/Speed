@@ -24,6 +24,5 @@ namespace WebApplication1.Models
         public bool IsSearchingOpponent { get; set; }
 
         public PlayerDeck Deck { get; set; }
-        public PlayerHand Hand { get; set; }
     }
 }

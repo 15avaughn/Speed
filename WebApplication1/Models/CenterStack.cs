@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class SpeedFlip
+    public class CenterStack
     {
         private List<Card> _cards = new List<Card>();
         public List<Card> Cards
@@ -13,5 +13,7 @@ namespace WebApplication1.Models
             get { return _cards; }
             set { _cards = value; }
         }
+
+        public bool CanBePlacedOn { get; set; }
     }
 }

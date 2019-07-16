@@ -74,11 +74,13 @@ function drop(ev) {
 }
 
 connection.start().then(function () {
+    /*
     document.getElementById("playerCard1").draggable = true;
     document.getElementById("playerCard2").draggable = true;
     document.getElementById("playerCard3").draggable = true;
     document.getElementById("playerCard4").draggable = true;
     document.getElementById("playerCard5").draggable = true;
+    */
 }).catch(function (err) {
     return console.error(err.toString());
 });

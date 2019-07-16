@@ -123,10 +123,23 @@ namespace WebApplication1.Hubs
             games.TryAdd(player.ConnectionId, new Game(player, opponent));
         }
 
-        private void Remove<T>(ConcurrentBag<T> players, T playerWithoutGame)
-        {
-            players = new ConcurrentBag<T>(players.Except(new[] { playerWithoutGame }));
-        }
+        //All need to be Async
+        //Deal Center Stacks
+            //only worry about sending to client
+
+        //Change stack once placed (push to CenterStack)
+            //calls pair checking
+            //do nothing if not a valid pair
+
+        //Check pairs
+            //reset button if a button was previously pressed
+
+        //button logic
+            // check if both are clicked
+            // if both are checked 
+                //add center stacks to decks
+                // deal stacks again
+
 
 
 
