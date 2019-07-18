@@ -6,18 +6,12 @@ $("#game").hide();
 var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 var testing = "";
 var playerName = "";
-connection.on("ReceiveCard", function (card, leftOrRight, opponentCard) {
-    document.getElementById(leftOrRight).innerHTML = card;
-    document.getElementById(opponentCard).remove();
+connection.on("ReceiveCard", function (sentCard, centerStack) {
+    $("#test").html(sentCard+centerStack);
 });
 
 connection.on("test", function () {
     $("#test").html("<br/><span><strong>Something went wrong.</strong></span>");
-});
-
-connection.on("ReceiveGame", function (game) {
-    testing = game + " " + testing;
-    document.getElementById("test").innerHTML = testing;
 });
 
 connection.on('registrationComplete', data => {
@@ -59,18 +53,18 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    
 }
 
 function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var opponentCard = data.replace("player", "opponent");
-    ev.target.innerHTML = document.getElementById(data).innerHTML;
-    connection.invoke("SendCard", document.getElementById(data).innerHTML, ev.target.id, opponentCard).catch(function (err) {
+//  ev.preventDefault();
+//  var data = ev.dataTransfer.getData("text");
+//  var opponentCard = data.replace("player", "opponent");
+//  ev.target.innerHTML = document.getElementById(data).innerHTML;
+    connection.invoke("SendCard", ev.target.id).catch(function (err) {
         return console.error(err.toString());
     });
-    document.getElementById(data).remove();
+//    document.getElementById(data).remove();
 }
 
 connection.start().then(function () {

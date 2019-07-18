@@ -124,21 +124,110 @@ namespace WebApplication1.Hubs
         }
 
         //All need to be Async
+
         //Deal Center Stacks
-            //only worry about sending to client
+        //only worry about sending to client
 
         //Change stack once placed (push to CenterStack)
-            //calls pair checking
-            //do nothing if not a valid pair
+        //calls pair checking
+        //do nothing if not a valid pair
+        public async Task SendCard(string centerStack) //Also Test Function (for now).
+        {
+            var game = games?.Values.FirstOrDefault(j => j.Player1.ConnectionId == Context.ConnectionId || j.Player2.ConnectionId == Context.ConnectionId);
+            string sentCard = "";
+            if(Context.ConnectionId == game.Player1.ConnectionId)
+            {
+                switch (centerStack)
+                {
+                    case "player2Stack1":
+                        game.Player2Row.CenterStack1.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
+                        break;
+                    case "player2Stack2":
+                        game.Player2Row.CenterStack2.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
+                        break;
+                    case "player2Stack3":
+                        game.Player2Row.CenterStack3.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
+                        break;
+                    case "player2Stack4":
+                        game.Player2Row.CenterStack4.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+                        break;
+                    case "player1Stack1":
+                        game.Player1Row.CenterStack1.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
+                        break;
+                    case "player1Stack2":
+                        game.Player1Row.CenterStack2.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
+                        break;
+                    case "player1Stack3":
+                        game.Player1Row.CenterStack3.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
+                        break;
+                    case "player1Stack4":
+                        game.Player1Row.CenterStack4.Cards.Add(game.Player1.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if(Context.ConnectionId == game.Player2.ConnectionId)
+            {
+                switch (centerStack)
+                {
+                    case "player2Stack1":
+                        game.Player2Row.CenterStack1.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
+                        break;
+                    case "player2Stack2":
+                        game.Player2Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
+                        break;
+                    case "player2Stack3":
+                        game.Player2Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
+                        break;
+                    case "player2Stack4":
+                        game.Player2Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+                        break;
+                    case "player1Stack1":
+                        game.Player1Row.CenterStack1.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
+                        break;
+                    case "player1Stack2":
+                        game.Player1Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
+                        break;
+                    case "player1Stack3":
+                        game.Player1Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
+                        break;
+                    case "player1Stack4":
+                        game.Player1Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
+                        sentCard = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            await Clients.Client(game.Player1.ConnectionId).SendAsync("ReceiveCard", sentCard, centerStack);
+            await Clients.Client(game.Player2.ConnectionId).SendAsync("ReceiveCard", sentCard, centerStack);
+        }
 
         //Check pairs
-            //reset button if a button was previously pressed
+        //reset button if a button was previously pressed
 
         //button logic
-            // check if both are clicked
-            // if both are checked 
-                //add center stacks to decks
-                // deal stacks again
+        // check if both are clicked
+        // if both are checked 
+        //add center stacks to decks
+        // deal stacks again
 
 
 
@@ -156,10 +245,7 @@ namespace WebApplication1.Hubs
 
 
 
-        public async Task SendCard(string card, string leftOrRight, string opponentCard) //Also Test Function (for now).
-        {
-            await Clients.All.SendAsync("ReceiveCard", card, leftOrRight, opponentCard);
-        }
+
 
 
         /*public async Task SendGame() //Test Function
