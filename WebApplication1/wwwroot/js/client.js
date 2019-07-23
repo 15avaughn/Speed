@@ -1,9 +1,4 @@
 ﻿"use strict";
-$("#register").show();
-$("#findOpponent").hide();
-$("#findingOpponent").hide();
-$("#game").hide();
-$("#newGame").hide();
 var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 var testing = "";
 var playerName = "";
@@ -88,7 +83,7 @@ connection.on('gameOver', function (shobu) {
     }
     else if (shobu == "lost") {
         $('#newGame').show();
-        $('#test').html("<br/><span><strong>Sorry, " + playerName + ", your opponent has gotten rid of all their cards. You lose!</strong></span> <br/><span><strong>Press \"New Game\" to play a new game against your current opponent.</strong></span>");
+        $('#test').html("<br/><span><strong>Sorry " + playerName + ", your opponent has gotten rid of all their cards. You lose!</strong></span> <br/><span><strong>Press \"New Game\" to play a new game against your current opponent.</strong></span>");
     }
 });
 
