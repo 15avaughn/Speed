@@ -14,6 +14,6 @@ namespace WebApplication1.Models
             set { _cards = value; }
         }
 
-        public bool CanBePlacedOn { get; set; }
+        public bool CanBePlacedOn { get; set; } = false;
     }
 }

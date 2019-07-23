@@ -30,15 +30,15 @@
     <fieldset>
         <legend>Find a player to play against!</legend>
         <div class="form-group">
-            <input type="button" class="btn btn-primary" id="btnFindOpponentPlayer" value="Find Opponent Player" />
+            <input type="button" class="btn btn-primary" id="btnFindOpponentPlayer" value="Find Opponent" />
         </div>
     </fieldset>
 </div>
 <div id="findingOpponent">
     <fieldset>
-        <legend>Its lonely here!</legend>
+        <legend>Nobody is here.</legend>
         <div class="form-group">
-            Looking for an opponent player. Waiting for someone to join!
+            Waiting for someone to join.
         </div>
     </fieldset>
 </div>
@@ -50,38 +50,44 @@
     
 
     <div class="hand" id="opponentHand">
-        <div class="card" id="player2Stack1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂠
+        <div class="card">
+            <img src="~/images/Back.svg" id="player2Stack1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player2Stack2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂢
+        <div class="card">
+            <img src="~/images/Back.svg" id="player2Stack2" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player2Stack3" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂢
+        <div class="card">
+            <img src="~/images/Back.svg" id="player2Stack3" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player2Stack4" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂠
+        <div class="card">
+            <img src="~/images/Back.svg" id="player2Stack4" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
     </div>
     <div class="hand" id="playerHand">
 
-        <div class="card" id="player1Stack1" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂡
+        <div class="card">
+            <img src="~/images/Back.svg" id="player1Stack1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player1Stack2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂢
+        <div class="card">
+            <img src="~/images/Back.svg" id="player1Stack2" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player1Stack3" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂣
+        <div class="card">
+            <img src="~/images/Back.svg" id="player1Stack3" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
-        <div class="card" id="player1Stack4" ondrop="drop(event)" ondragover="allowDrop(event)">
-            🂤
+        <div class="card">
+            <img src="~/images/Back.svg" id="player1Stack4" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
         </div>
         <div></div>
-        <div class="card" id="playerDeck" ondragstart="drag(event)" draggable="true">
-            🂠
+        <div class="card">
+            <img src="~/images/Back.svg" id="playerDeck" ondragstart="drag(event)" draggable="true">
         </div>
     </div>
+    <button type="button" id="resetButton" onclick="resetGame()">No One Wants To Reset</button>
+    <div id="cardCount"></div>
+</div>
+
+<div id="newGame">
+    <input type="button" class="btn btn-primary" id="btnNewGame" value="New Game" />
 </div>
 
 
