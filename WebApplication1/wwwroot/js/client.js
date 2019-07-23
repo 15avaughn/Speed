@@ -141,8 +141,6 @@ function drop(ev) {
     });
 }
 
-connection.start().then(function () {
-    
-}).catch(function (err) {
+connection.start().catch(function (err) {
     return console.error(err.toString());
 });

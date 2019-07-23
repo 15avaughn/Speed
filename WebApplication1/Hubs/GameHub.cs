@@ -141,16 +141,9 @@ namespace WebApplication1.Hubs
         #endregion
 
         #region Game
-        //All need to be Async
-
-        //Deal Center Stacks
-        //only worry about sending to client
-
-        //Change stack once placed (push to CenterStack)
-        //calls pair checking
-        //do nothing if not a valid pair
+        
         ///<summary>Moves dropped card to the stack if top card is a match</summary><param name="centerStack">Stack to drop to</param>
-        public async Task SendCard(string centerStack) //Also Test Function (for now).
+        public async Task SendCard(string centerStack) 
         {
           
             var game = games?.Values.FirstOrDefault(j => j.Player1.ConnectionId == Context.ConnectionId || j.Player2.ConnectionId == Context.ConnectionId);

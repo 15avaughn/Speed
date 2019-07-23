@@ -14,7 +14,6 @@ namespace WebApplication1.Models
 
         public string ConnectionId { get; set; }
         public string Name { get; set; }
-        public string Group { get; set; }
         public bool IsPlaying { get; set; }
         public bool WantsReset { get; set; } = false;
         public Player Opponent { get; set; }
