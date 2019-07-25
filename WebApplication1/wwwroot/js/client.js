@@ -5,6 +5,9 @@ var playerName = "";
 var opponentName = "";
 var playerReset = false;
 var opponentReset = false;
+document.oncontextmenu = function () {
+    return false;
+}
 connection.on("ReceiveCard", function (sentCard, centerStack) {
     $("#" + centerStack).attr("src", "/images/" + sentCard + ".svg");
 });
@@ -21,8 +24,7 @@ connection.on("drawGame", function (player1Stack1, player1Stack2, player1Stack3,
 });
 
 connection.on("playerNumber", function (playerNum) {
-    playerNumber = playerNum;
-    if (playerNumber == "player2") {
+    if (playerNum == "player2") {
         $("#player1Stack1").attr('id','player2Stack4');
         $("#player1Stack2").attr('id','player2Stack3');
         $("#player1Stack3").attr('id','player2Stack2');
