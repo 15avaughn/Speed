@@ -276,7 +276,7 @@ namespace WebApplication1.Hubs
                     case "player1Stack2":
                         if (game.Player1Row.CenterStack2.CanBePlacedOn)
                         {
-                            game.Player1Row.CenterStack1.CanBePlacedOn = false;
+                            game.Player1Row.CenterStack2.CanBePlacedOn = false;
                             game.Player1Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
                             sentCard = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
                             receive = true;
