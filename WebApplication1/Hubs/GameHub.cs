@@ -133,8 +133,10 @@ namespace WebApplication1.Hubs
             var player2Stack2 = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
             var player2Stack3 = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
             var player2Stack4 = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
-            Clients.Client(Context.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
-            Clients.Client(opponent.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
+            Clients.Client(game.Player1.ConnectionId).SendAsync("playerNumber", "player1");
+            Clients.Client(game.Player2.ConnectionId).SendAsync("playerNumber", "player2");
+            Clients.Client(game.Player1.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
+            Clients.Client(game.Player2.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
             Clients.Client(game.Player1.ConnectionId).SendAsync("cardCount", game.Player1.Deck.Cards.Count);
             Clients.Client(game.Player2.ConnectionId).SendAsync("cardCount", game.Player2.Deck.Cards.Count);
         }

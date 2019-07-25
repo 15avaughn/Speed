@@ -20,6 +20,19 @@ connection.on("drawGame", function (player1Stack1, player1Stack2, player1Stack3,
     $("#player2Stack4").attr("src", "/images/" + player2Stack4 + ".svg");
 });
 
+connection.on("playerNumber", function (playerNum) {
+    if (playerNum == "player2") {
+        $("#player1Stack1").attr('id','player2Stack4');
+        $("#player1Stack2").attr('id','player2Stack3');
+        $("#player1Stack3").attr('id','player2Stack2');
+        $("#player1Stack4").attr('id','player2Stack1');
+        $("#player2Stack1").attr('id','player1Stack1');
+        $("#player2Stack2").attr('id','player1Stack2');
+        $("#player2Stack3").attr('id','player1Stack3');
+        $("#player2Stack4").attr('id','player1Stack4');
+    }
+});
+
 connection.on("test", function () {
     $("#test").html("<br/><span><strong>Something went wrong.</strong></span>");
 });
