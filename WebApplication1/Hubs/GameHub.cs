@@ -598,8 +598,6 @@ namespace WebApplication1.Hubs
                 game.Player2Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
                 game.Player2Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
 
-                CheckPairs(game);
-                
                 game.Player1Row.CenterStack1.CanBePlacedOn = false;
                 game.Player1Row.CenterStack2.CanBePlacedOn = false;
                 game.Player1Row.CenterStack3.CanBePlacedOn = false;
@@ -609,6 +607,8 @@ namespace WebApplication1.Hubs
                 game.Player2Row.CenterStack3.CanBePlacedOn = false;
                 game.Player2Row.CenterStack4.CanBePlacedOn = false;
 
+                CheckPairs(game);
+                
                 var player1Stack1 = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
                 var player1Stack2 = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
                 var player1Stack3 = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
