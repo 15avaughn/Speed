@@ -29,10 +29,10 @@ connection.on("playerNumber", function (playerNum) {
         $("#player1Stack2").attr('id','player2Stack3');
         $("#player1Stack3").attr('id','player2Stack2');
         $("#player1Stack4").attr('id','player2Stack1');
-        $("#player2Stack1").attr('id','player1Stack1');
-        $("#player2Stack2").attr('id','player1Stack2');
-        $("#player2Stack3").attr('id','player1Stack3');
-        $("#player2Stack4").attr('id','player1Stack4');
+        $("#player2Stack1").attr('id','player1Stack4');
+        $("#player2Stack2").attr('id','player1Stack3');
+        $("#player2Stack3").attr('id','player1Stack2');
+        $("#player2Stack4").attr('id','player1Stack1');
     }
 });
 
