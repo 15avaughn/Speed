@@ -122,13 +122,32 @@ $("#btnNewGame").click(function () {
     connection.invoke('NewGame');
 });
 
-function allowDrop(ev) {
+/*function allowDrop(ev) { //Old Drag-and-Drop
     ev.preventDefault();
 }
 
 function drag(ev) {
     
 }
+
+function drop(ev) {
+    ev.preventDefault();
+    connection.invoke("SendCard", ev.target.id).catch(function (err) {
+        return console.error(err.toString());
+    });
+}*/
+
+$(function () { //New Drag-and-Drop
+    $("#playerDeck").draggable({ revert: true, revertDuration: 0, helper: "clone" });
+    $(".stack").droppable({
+        accept: "#playerDeck",
+        drop: function (event, ui) {
+            connection.invoke("SendCard", event.target.id).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+    });
+});
 
 function resetGame() {
     if (!playerReset) {
@@ -148,13 +167,6 @@ function resetGame() {
             return console.error(err.toString());
         });
     }
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    connection.invoke("SendCard", ev.target.id).catch(function (err) {
-        return console.error(err.toString());
-    });
 }
 
 connection.start().catch(function (err) {

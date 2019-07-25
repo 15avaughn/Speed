@@ -1,9 +1,11 @@
 ﻿@page
 <style>
     .card {
-        font-size: 180px;
         display: inline-block;
-    
+    }
+
+    .deck {
+        display: inline-block;
     }
 
     div {
@@ -76,35 +78,35 @@
 
     <div class="hand" id="opponentHand">
         <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player2Stack1" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack2" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player2Stack2" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack3" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player2Stack3" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack4" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player2Stack4" class="stack">
         </div>
     </div>
     <div class="hand" id="playerHand">
 
         <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player1Stack1" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack2" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player1Stack2" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack3" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player1Stack3" class="stack">
         </div>
         <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack4" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="false">
+            <img src="~/images/Back.svg" id="player1Stack4" class="stack">
         </div>
         <div></div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="playerDeck" ondragstart="drag(event)" draggable="true">
+        <div class="deck">
+            <img src="~/images/Back.svg" id="playerDeck">
         </div>
     </div>
     <button type="button" id="resetButton" onclick="resetGame()">No One Wants To Reset</button>
@@ -118,4 +120,6 @@
 
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jqueryui/jquery-ui.js"></script>
+<script src="~/js/jquery.ui.touch-punch.min.js"></script>
 <script src="~/js/client.js"></script>
