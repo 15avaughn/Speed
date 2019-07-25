@@ -139,7 +139,7 @@ function drop(ev) {
 
 $(function () { //New Drag-and-Drop
     $("#playerDeck").draggable({ revert: true, revertDuration: 0, helper: "clone" });
-    $(".stack").droppable({
+    $(".card").droppable({
         accept: "#playerDeck",
         drop: function (event, ui) {
             connection.invoke("SendCard", event.target.id).catch(function (err) {

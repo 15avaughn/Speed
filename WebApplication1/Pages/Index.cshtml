@@ -1,11 +1,9 @@
 ﻿@page
 <style>
-    .card {
+    .stack, .ui-draggable-dragging, .deck{
         display: inline-block;
-    }
-
-    .deck {
-        display: inline-block;
+        height: auto;
+        width: 10vh;
     }
 
     div {
@@ -22,6 +20,8 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        width: 100%;
+        height: 100%;
     }
 
     #playerDeck {
@@ -34,6 +34,18 @@
 
     .hand {
         text-align: center;
+    }
+
+    @@media only screen and (min-device-width: 400px) {
+        .stack, .ui-draggable-dragging, .deck {
+            width: 20vh;
+        }
+    }
+
+    @@media only screen and (orientation:landscape) {
+        .stack, .ui-draggable-dragging, .deck {
+            width: 20vh;
+        }
     }
 </style>
 
@@ -77,39 +89,39 @@
     
 
     <div class="hand" id="opponentHand">
-        <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack1" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player2Stack1" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack2" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player2Stack2" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack3" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player2Stack3" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player2Stack4" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player2Stack4" class="card">
         </div>
     </div>
     <div class="hand" id="playerHand">
 
-        <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack1" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player1Stack1" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack2" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player1Stack2" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack3" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player1Stack3" class="card">
         </div>
-        <div class="card">
-            <img src="~/images/Back.svg" id="player1Stack4" class="stack">
+        <div class="stack">
+            <img src="~/images/Back.svg" id="player1Stack4" class="card">
         </div>
         <div></div>
         <div class="deck">
             <img src="~/images/Back.svg" id="playerDeck">
         </div>
     </div>
-    <button type="button" id="resetButton" onclick="resetGame()">No One Wants To Reset</button>
+    <button type="button" class="btn btn-primary" id="resetButton" onclick="resetGame()">No One Wants To Reset</button>
     <div id="cardCount"></div>
 </div>
 
