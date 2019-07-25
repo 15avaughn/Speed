@@ -5,6 +5,9 @@ var playerName = "";
 var opponentName = "";
 var playerReset = false;
 var opponentReset = false;
+document.oncontextmenu = function () {
+    return false;
+}
 connection.on("ReceiveCard", function (sentCard, centerStack) {
     $("#" + centerStack).attr("src", "/images/" + sentCard + ".svg");
 });
