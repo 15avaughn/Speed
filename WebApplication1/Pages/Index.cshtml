@@ -1,9 +1,10 @@
 ﻿@page
 <style>
+    html{
+        text-align: center;
+    }
     .stack, .ui-draggable-dragging, .deck{
         display: inline-block;
-        height: auto;
-        width: 10vw;
     }
 
     div {
@@ -20,51 +21,42 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-        width: 100%;
-        height: 100%;
-    }
-
-    #playerDeck {
-        -webkit-touch-callout: initial;
-        -webkit-user-select: initial;
-        -moz-user-select: initial;
-        -ms-user-select: initial;
-        user-select: initial;
+        width: 15vw;
+        max-width: 200px;
+        height: auto;
     }
 
     .hand {
         text-align: center;
     }
 </style>
+<div class="webpage" id="webpage">
 
 <div id="register">
     <fieldset>
         <legend>Register</legend>
-        <div class="form-group">
-            <label for="name" class="col-lg-2 control-label">Name</label>
-            <div class="col-lg-10">
+            <div>
                 <input type="text" class="form-control" id="name" placeholder="Name">
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <button type="button" class="btn btn-primary" id="btnRegister">Register</button>
+            <div>
+                <button type="button" class="btn btn-primary" id="btnRegister" style="margin-top:10px;">Register</button>
             </div>
-        </div>
     </fieldset>
 </div>
+
 <div id="findOpponent" style="display: none">
     <fieldset>
-        <legend>Find a player to play against!</legend>
-        <div class="form-group">
+        <legend>Find a player to play against.</legend>
+        <div>
             <input type="button" class="btn btn-primary" id="btnFindOpponentPlayer" value="Find Opponent" />
         </div>
     </fieldset>
 </div>
+
 <div id="findingOpponent" style="display: none">
     <fieldset>
         <legend>Nobody is here.</legend>
-        <div class="form-group">
+        <div>
             Waiting for someone to join.
         </div>
     </fieldset>
@@ -78,31 +70,31 @@
 
     <div class="hand" id="opponentHand">
         <div class="stack">
-            <img src="~/images/Back.svg" id="player2Stack1" class="card">
+            <img src="~/images/Back.svg" id="player2Stack1" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player2Stack2" class="card">
+            <img src="~/images/Back.svg" id="player2Stack2" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player2Stack3" class="card">
+            <img src="~/images/Back.svg" id="player2Stack3" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player2Stack4" class="card">
+            <img src="~/images/Back.svg" id="player2Stack4" class="card" draggable="false">
         </div>
     </div>
     <div class="hand" id="playerHand">
 
         <div class="stack">
-            <img src="~/images/Back.svg" id="player1Stack1" class="card">
+            <img src="~/images/Back.svg" id="player1Stack1" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player1Stack2" class="card">
+            <img src="~/images/Back.svg" id="player1Stack2" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player1Stack3" class="card">
+            <img src="~/images/Back.svg" id="player1Stack3" class="card" draggable="false">
         </div>
         <div class="stack">
-            <img src="~/images/Back.svg" id="player1Stack4" class="card">
+            <img src="~/images/Back.svg" id="player1Stack4" class="card" draggable="false">
         </div>
         <div></div>
         <div class="deck">
@@ -117,7 +109,7 @@
     <input type="button" class="btn btn-primary" id="btnNewGame" value="New Game" />
 </div>
 
-
+</div>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jqueryui/jquery-ui.js"></script>
