@@ -168,18 +168,6 @@ function resetGame() {
         });
     }
 }
-
-function doResize(event, ui) {
-    var scale = Math.min(
-        availableWidth / contentWidth,
-        availableHeight / contentHeight
-    );
-
-    $('#website').css({
-        transform: "scale(" + scale + ")"
-    });
-}
-
 connection.start().catch(function (err) {
     return console.error(err.toString());
 });
