@@ -325,7 +325,6 @@ namespace WebApplication1.Hubs
 
         public void CheckPairs(Game game)
         {
-            #region awful
             //row1 card 1
             List<CenterStack> topCards = new List<CenterStack>{
                 {game.Player1.Row[1]},
@@ -349,66 +348,27 @@ namespace WebApplication1.Hubs
                 }
             }
 
-            //if it is a repeated number
-            if (game.Player1.Row[1].Cards.Count >= 2)
-            {
-                if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[1].Cards[game.Player1.Row[1].Cards.Count -2].Value)
-                {
-                    game.Player1.Row[1].CanBePlacedOn = true;
-                }
-            }
-            if (game.Player1.Row[2].Cards.Count >= 2)
-            {
-                if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[2].Cards[game.Player1.Row[2].Cards.Count -2].Value)
-                {
-                    game.Player1.Row[2].CanBePlacedOn = true;
-                }
-            }
-            if (game.Player1.Row[3].Cards.Count >= 2)
-            {
-                if (game.Player1.Row[3].Cards.Last().Value == game.Player1.Row[3].Cards[game.Player1.Row[3].Cards.Count -2].Value)
-                {
-                    game.Player1.Row[3].CanBePlacedOn = true;
-                }
-            }
-            if (game.Player1.Row[4].Cards.Count >= 2)
-            {
-                if (game.Player1.Row[4].Cards.Last().Value == game.Player1.Row[4].Cards[game.Player1.Row[4].Cards.Count -2].Value)
-                {
-                    game.Player1.Row[4].CanBePlacedOn = true;
-                } 
-            }
+        //if it is a repeated number
 
-            if (game.Player2.Row[1].Cards.Count >= 2)
-            {
-                if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[1].Cards[game.Player2.Row[1].Cards.Count -2].Value)
+            foreach (var i in game.Player1.Row.Keys) {
+                if (game.Player1.Row[i].Cards.Count >= 2){
+                    if (game.Player1.Row[i].Cards.Last().Value == game.Player1.Row[i].Cards[game.Player1.Row[i].Cards.Count -2].Value)
                 {
-                    game.Player2.Row[1].CanBePlacedOn = true;
+                    game.Player1.Row[i].CanBePlacedOn = true;
                 }
-            }
-            if (game.Player2.Row[2].Cards.Count >= 2)
-            {
-                if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[2].Cards[game.Player2.Row[2].Cards.Count -2].Value)
-                {
-                    game.Player2.Row[2].CanBePlacedOn = true;
-                }
-            }
-            if (game.Player2.Row[3].Cards.Count >= 2)
-            {
-                if (game.Player2.Row[3].Cards.Last().Value == game.Player2.Row[3].Cards[game.Player2.Row[3].Cards.Count -2].Value)
-                {
-                    game.Player2.Row[3].CanBePlacedOn = true;
-                }
-            }
-            if (game.Player2.Row[4].Cards.Count >= 2)
-            {
-                if (game.Player2.Row[4].Cards.Last().Value == game.Player2.Row[4].Cards[game.Player2.Row[4].Cards.Count -2].Value)
-                {
-                    game.Player2.Row[4].CanBePlacedOn = true;
                 }
             }
 
-            #endregion
+            foreach (var i in game.Player2.Row.Keys) {
+                if (game.Player2.Row[i].Cards.Count >= 2){
+                    if (game.Player2.Row[i].Cards.Last().Value == game.Player2.Row[i].Cards[game.Player2.Row[i].Cards.Count -2].Value)
+                {
+                    game.Player2.Row[i].CanBePlacedOn = true;
+                }
+                }
+            }
+            
+         
         }
 
         public async Task ResetGame(Boolean WantsToReset)
