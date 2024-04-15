@@ -7,9 +7,9 @@ namespace WebApplication1.Models
 {
     public class Game
     {
-        public Deck DealPlayerDeck(Deck deck)
+        public PlayerDeck DealPlayerDeck(Deck deck)
         {
-            Deck dealingCards = new Deck();
+            var dealingCards = new PlayerDeck();
             for (int i = 0; i < 26; i++)
             {
                 dealingCards.Cards.Add(deck.Draw());
