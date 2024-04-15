@@ -327,156 +327,26 @@ namespace WebApplication1.Hubs
         {
             #region awful
             //row1 card 1
-            if(game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[2].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player1.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player1.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player1.Row[4].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[1].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
-            //row1 card 2
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player1.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player1.Row[4].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[1].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
+            List<CenterStack> topCards = new List<CenterStack>{
+                {game.Player1.Row[1]},
+                {game.Player1.Row[2]},
+                {game.Player1.Row[3]},
+                {game.Player1.Row[4]},
 
-            //row1 card 3
-            if (game.Player1.Row[3].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[3].CanBePlacedOn = true;
-                game.Player1.Row[4].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
-            {
-                game.Player1.Row[3].CanBePlacedOn = true;
-                game.Player2.Row[1].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
-            {
-                game.Player1.Row[3].CanBePlacedOn = true;
-                game.Player2.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[3].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[3].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
+                {game.Player2.Row[1]},
+                {game.Player2.Row[2]},
+                {game.Player2.Row[3]},
+                {game.Player2.Row[4]},
+            };
 
-            //row1 card 4
-            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
-            {
-                game.Player1.Row[4].CanBePlacedOn = true;
-                game.Player2.Row[1].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
-            {
-                game.Player1.Row[4].CanBePlacedOn = true;
-                game.Player2.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player1.Row[4].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player1.Row[4].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
+            var matches = topCards.GroupBy(x => x.Cards.Last().Value)
+              .Where(g => g.Count() > 1)
+              .ToDictionary(x => x.Key, y => y.Count());
 
-            //row2 card 1
-            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
-            {
-                game.Player2.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[2].CanBePlacedOn = true;
-            }
-            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player2.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player2.Row[1].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
-
-            //row2 card 2
-            if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
-            {
-                game.Player2.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[3].CanBePlacedOn = true;
-            }
-            if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player2.Row[2].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
-            }
-
-            //row2 card 3
-            if (game.Player2.Row[3].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
-            {
-                game.Player2.Row[3].CanBePlacedOn = true;
-                game.Player2.Row[4].CanBePlacedOn = true;
+            foreach(CenterStack i in topCards){
+                if(matches.ContainsKey(i.Cards.Last().Value)){
+                    i.CanBePlacedOn = true;
+                }
             }
 
             //if it is a repeated number
