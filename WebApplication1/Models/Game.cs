@@ -7,12 +7,12 @@ namespace WebApplication1.Models
 {
     public class Game
     {
-        public PlayerDeck DealPlayerDeck(Deck deck)
+        public Deck DealPlayerDeck(Deck deck)
         {
-            PlayerDeck dealingCards = new PlayerDeck();
+            Deck dealingCards = new Deck();
             for (int i = 0; i < 26; i++)
             {
-                dealingCards.Cards.Add(deck.Cards.Pop());
+                dealingCards.Cards.Add(deck.Draw());
             }
 
             return dealingCards;
@@ -22,9 +22,6 @@ namespace WebApplication1.Models
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
 
-        public CenterStackRow Player1Row { get; set; }
-        public CenterStackRow Player2Row { get; set; }
-
         public Deck Deck { get; set; }
 
         public Game(Player player1, Player player2)
@@ -33,22 +30,32 @@ namespace WebApplication1.Models
             Player2 = player2;
             Deck = new Deck();
 
-            Player1Row = new CenterStackRow();
-            Player2Row = new CenterStackRow();
+            Player1.Row = new Dictionary<int,CenterStack>{
+                {1,new CenterStack()},
+                {2,new CenterStack()},
+                {3,new CenterStack()},
+                {4,new CenterStack()}
+            };
+
+            Player2.Row = new Dictionary<int,CenterStack>{
+                {1,new CenterStack()},
+                {2,new CenterStack()},
+                {3,new CenterStack()},
+                {4,new CenterStack()}
+            };
 
             Player1.Deck = DealPlayerDeck(Deck);
             Player2.Deck = DealPlayerDeck(Deck);
 
-            Player1Row.CenterStack1.Cards.Add(Player1.Deck.Draw());
-            Player1Row.CenterStack2.Cards.Add(Player1.Deck.Draw());
-            Player1Row.CenterStack3.Cards.Add(Player1.Deck.Draw());
-            Player1Row.CenterStack4.Cards.Add(Player1.Deck.Draw());
+            Player1.Row[1].Cards.Add(Player1.Deck.Draw());
+            Player1.Row[2].Cards.Add(Player1.Deck.Draw());
+            Player1.Row[3].Cards.Add(Player1.Deck.Draw());
+            Player1.Row[4].Cards.Add(Player1.Deck.Draw());
 
-            Player2Row.CenterStack1.Cards.Add(Player2.Deck.Draw());
-            Player2Row.CenterStack2.Cards.Add(Player2.Deck.Draw());
-            Player2Row.CenterStack3.Cards.Add(Player2.Deck.Draw());
-            Player2Row.CenterStack4.Cards.Add(Player2.Deck.Draw());
+            Player2.Row[1].Cards.Add(Player2.Deck.Draw());
+            Player2.Row[2].Cards.Add(Player2.Deck.Draw());
+            Player2.Row[3].Cards.Add(Player2.Deck.Draw());
+            Player2.Row[4].Cards.Add(Player2.Deck.Draw());
         }
-
     }
 }

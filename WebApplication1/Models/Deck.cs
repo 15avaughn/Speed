@@ -14,6 +14,28 @@ namespace WebApplication1.Models
             set { _cards = value; }
         }
 
+        static readonly Random Random = new Random();
+
+        public void Shuffle()
+        {
+            int n = _cards.Count;
+            while (n > 1)
+            {
+                n--;
+                var k = Random.Next(n + 1);
+                Card value = _cards[k];
+                _cards[k] = _cards[n];
+                _cards[n] = value;
+            }
+        }
+
+        public Card Draw()
+        {
+            Card drawnCard = _cards[0];
+            _cards.RemoveAt(0);
+            return drawnCard;
+        }
+
         public Deck()
         {
             for (int i = 1; i <= 13; i++)
@@ -39,7 +61,7 @@ namespace WebApplication1.Models
                     Suit = "Spades"
                 });
             }
-            _cards.Shuffle();
+            Shuffle();
         }
     }
         

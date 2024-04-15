@@ -121,14 +121,14 @@ namespace WebApplication1.Hubs
 
             games.TryAdd(player.ConnectionId, game);
             CheckPairs(game);
-            var player1Stack1 = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
-            var player1Stack2 = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
-            var player1Stack3 = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
-            var player1Stack4 = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
-            var player2Stack1 = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
-            var player2Stack2 = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
-            var player2Stack3 = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
-            var player2Stack4 = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+            var player1Stack1 = game.Player1.Row[1].Cards.Last().Value + game.Player1.Row[1].Cards.Last().Suit;
+            var player1Stack2 = game.Player1.Row[2].Cards.Last().Value + game.Player1.Row[2].Cards.Last().Suit;
+            var player1Stack3 = game.Player1.Row[3].Cards.Last().Value + game.Player1.Row[3].Cards.Last().Suit;
+            var player1Stack4 = game.Player1.Row[4].Cards.Last().Value + game.Player1.Row[4].Cards.Last().Suit;
+            var player2Stack1 = game.Player2.Row[1].Cards.Last().Value + game.Player2.Row[1].Cards.Last().Suit;
+            var player2Stack2 = game.Player2.Row[2].Cards.Last().Value + game.Player2.Row[2].Cards.Last().Suit;
+            var player2Stack3 = game.Player2.Row[3].Cards.Last().Value + game.Player2.Row[3].Cards.Last().Suit;
+            var player2Stack4 = game.Player2.Row[4].Cards.Last().Value + game.Player2.Row[4].Cards.Last().Suit;
             Clients.Client(game.Player1.ConnectionId).SendAsync("playerNumber", "player1");
             Clients.Client(game.Player2.ConnectionId).SendAsync("playerNumber", "player2");
             Clients.Client(game.Player1.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
@@ -153,66 +153,66 @@ namespace WebApplication1.Hubs
                 switch (centerStack)
                 {
                     case "player2Stack1":
-                        if (game.Player2Row.CenterStack1.CanBePlacedOn){
-                            game.Player2Row.CenterStack1.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack1.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
+                        if (game.Player2.Row[1].CanBePlacedOn){
+                            game.Player2.Row[1].CanBePlacedOn = false;
+                            game.Player2.Row[1].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player2.Row[1].Cards.Last().Value + game.Player2.Row[1].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack2":
-                        if (game.Player2Row.CenterStack2.CanBePlacedOn){
-                            game.Player2Row.CenterStack2.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack2.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
+                        if (game.Player2.Row[2].CanBePlacedOn){
+                            game.Player2.Row[2].CanBePlacedOn = false;
+                            game.Player2.Row[2].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player2.Row[2].Cards.Last().Value + game.Player2.Row[2].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack3":
-                        if (game.Player2Row.CenterStack3.CanBePlacedOn){
-                            game.Player2Row.CenterStack3.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack3.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
+                        if (game.Player2.Row[3].CanBePlacedOn){
+                            game.Player2.Row[3].CanBePlacedOn = false;
+                            game.Player2.Row[3].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player2.Row[3].Cards.Last().Value + game.Player2.Row[3].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack4":
-                        if (game.Player2Row.CenterStack4.CanBePlacedOn){
-                            game.Player2Row.CenterStack4.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack4.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+                        if (game.Player2.Row[4].CanBePlacedOn){
+                            game.Player2.Row[4].CanBePlacedOn = false;
+                            game.Player2.Row[4].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player2.Row[4].Cards.Last().Value + game.Player2.Row[4].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack1":
-                        if (game.Player1Row.CenterStack1.CanBePlacedOn){
-                            game.Player1Row.CenterStack1.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack1.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
+                        if (game.Player1.Row[1].CanBePlacedOn){
+                            game.Player1.Row[1].CanBePlacedOn = false;
+                            game.Player1.Row[1].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player1.Row[1].Cards.Last().Value + game.Player1.Row[1].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack2":
-                        if (game.Player1Row.CenterStack2.CanBePlacedOn){
-                            game.Player1Row.CenterStack2.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack2.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
+                        if (game.Player1.Row[2].CanBePlacedOn){
+                            game.Player1.Row[2].CanBePlacedOn = false;
+                            game.Player1.Row[2].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player1.Row[2].Cards.Last().Value + game.Player1.Row[2].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack3":
-                        if (game.Player1Row.CenterStack3.CanBePlacedOn){
-                            game.Player1Row.CenterStack3.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack3.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
+                        if (game.Player1.Row[3].CanBePlacedOn){
+                            game.Player1.Row[3].CanBePlacedOn = false;
+                            game.Player1.Row[3].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player1.Row[3].Cards.Last().Value + game.Player1.Row[3].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack4":
-                        if (game.Player1Row.CenterStack4.CanBePlacedOn){
-                            game.Player1Row.CenterStack4.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack4.Cards.Add(game.Player1.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
+                        if (game.Player1.Row[4].CanBePlacedOn){
+                            game.Player1.Row[4].CanBePlacedOn = false;
+                            game.Player1.Row[4].Cards.Add(game.Player1.Deck.Draw());
+                            sentCard = game.Player1.Row[4].Cards.Last().Value + game.Player1.Row[4].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
@@ -227,74 +227,74 @@ namespace WebApplication1.Hubs
                 switch (centerStack)
                 {
                     case "player2Stack1":
-                        if (game.Player2Row.CenterStack1.CanBePlacedOn)
+                        if (game.Player2.Row[1].CanBePlacedOn)
                         {
-                            game.Player2Row.CenterStack1.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack1.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
+                            game.Player2.Row[1].CanBePlacedOn = false;
+                            game.Player2.Row[1].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player2.Row[1].Cards.Last().Value + game.Player2.Row[1].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack2":
-                        if (game.Player2Row.CenterStack2.CanBePlacedOn)
+                        if (game.Player2.Row[2].CanBePlacedOn)
                         {
-                            game.Player2Row.CenterStack2.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
+                            game.Player2.Row[2].CanBePlacedOn = false;
+                            game.Player2.Row[2].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player2.Row[2].Cards.Last().Value + game.Player2.Row[2].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack3":
-                        if (game.Player2Row.CenterStack3.CanBePlacedOn)
+                        if (game.Player2.Row[3].CanBePlacedOn)
                         {
-                            game.Player2Row.CenterStack3.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
+                            game.Player2.Row[3].CanBePlacedOn = false;
+                            game.Player2.Row[3].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player2.Row[3].Cards.Last().Value + game.Player2.Row[3].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player2Stack4":
-                        if (game.Player2Row.CenterStack4.CanBePlacedOn)
+                        if (game.Player2.Row[4].CanBePlacedOn)
                         {
-                            game.Player2Row.CenterStack4.CanBePlacedOn = false;
-                            game.Player2Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+                            game.Player2.Row[4].CanBePlacedOn = false;
+                            game.Player2.Row[4].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player2.Row[4].Cards.Last().Value + game.Player2.Row[4].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack1":
-                        if (game.Player1Row.CenterStack1.CanBePlacedOn)
+                        if (game.Player1.Row[1].CanBePlacedOn)
                         {
-                            game.Player1Row.CenterStack1.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack1.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
+                            game.Player1.Row[1].CanBePlacedOn = false;
+                            game.Player1.Row[1].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player1.Row[1].Cards.Last().Value + game.Player1.Row[1].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack2":
-                        if (game.Player1Row.CenterStack2.CanBePlacedOn)
+                        if (game.Player1.Row[2].CanBePlacedOn)
                         {
-                            game.Player1Row.CenterStack2.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
+                            game.Player1.Row[2].CanBePlacedOn = false;
+                            game.Player1.Row[2].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player1.Row[2].Cards.Last().Value + game.Player1.Row[2].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack3":
-                        if (game.Player1Row.CenterStack3.CanBePlacedOn)
+                        if (game.Player1.Row[3].CanBePlacedOn)
                         {
-                            game.Player1Row.CenterStack3.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
+                            game.Player1.Row[3].CanBePlacedOn = false;
+                            game.Player1.Row[3].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player1.Row[3].Cards.Last().Value + game.Player1.Row[3].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
                     case "player1Stack4":
-                        if (game.Player1Row.CenterStack4.CanBePlacedOn)
+                        if (game.Player1.Row[4].CanBePlacedOn)
                         {
-                            game.Player1Row.CenterStack4.CanBePlacedOn = false;
-                            game.Player1Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
-                            sentCard = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
+                            game.Player1.Row[4].CanBePlacedOn = false;
+                            game.Player1.Row[4].Cards.Add(game.Player2.Deck.Draw());
+                            sentCard = game.Player1.Row[4].Cards.Last().Value + game.Player1.Row[4].Cards.Last().Suit;
                             receive = true;
                         }
                         break;
@@ -327,214 +327,214 @@ namespace WebApplication1.Hubs
         {
             #region awful
             //row1 card 1
-            if(game.Player1Row.CenterStack1.Cards.Last().Value == game.Player1Row.CenterStack2.Cards.Last().Value)
+            if(game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[2].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player1Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player1Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack1.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack2.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[1].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
             //row1 card 2
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player1Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player1Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack1.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack2.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[2].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //row1 card 3
-            if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player1Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[3].Cards.Last().Value == game.Player1.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack1.Cards.Last().Value)
+            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack2.Cards.Last().Value)
+            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[3].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack3.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[3].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //row1 card 4
-            if (game.Player1Row.CenterStack4.Cards.Last().Value == game.Player2Row.CenterStack1.Cards.Last().Value)
+            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[1].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack4.Cards.Last().Value == game.Player2Row.CenterStack2.Cards.Last().Value)
+            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack4.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player1Row.CenterStack4.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player1.Row[4].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player1Row.CenterStack4.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player1.Row[4].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //row2 card 1
-            if (game.Player2Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack2.Cards.Last().Value)
+            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[2].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
             }
-            if (game.Player2Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player2Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack1.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player2.Row[1].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //row2 card 2
-            if (game.Player2Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack3.Cards.Last().Value)
+            if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[3].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
             }
-            if (game.Player2Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack2.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player2.Row[2].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //row2 card 3
-            if (game.Player2Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack4.Cards.Last().Value)
+            if (game.Player2.Row[3].Cards.Last().Value == game.Player2.Row[4].Cards.Last().Value)
             {
-                game.Player2Row.CenterStack3.CanBePlacedOn = true;
-                game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                game.Player2.Row[3].CanBePlacedOn = true;
+                game.Player2.Row[4].CanBePlacedOn = true;
             }
 
             //if it is a repeated number
-            if (game.Player1Row.CenterStack1.Cards.Count >= 2)
+            if (game.Player1.Row[1].Cards.Count >= 2)
             {
-                if (game.Player1Row.CenterStack1.Cards.Last().Value == game.Player1Row.CenterStack1.Cards[game.Player1Row.CenterStack1.Cards.Count -2].Value)
+                if (game.Player1.Row[1].Cards.Last().Value == game.Player1.Row[1].Cards[game.Player1.Row[1].Cards.Count -2].Value)
                 {
-                    game.Player1Row.CenterStack1.CanBePlacedOn = true;
+                    game.Player1.Row[1].CanBePlacedOn = true;
                 }
             }
-            if (game.Player1Row.CenterStack2.Cards.Count >= 2)
+            if (game.Player1.Row[2].Cards.Count >= 2)
             {
-                if (game.Player1Row.CenterStack2.Cards.Last().Value == game.Player1Row.CenterStack2.Cards[game.Player1Row.CenterStack2.Cards.Count -2].Value)
+                if (game.Player1.Row[2].Cards.Last().Value == game.Player1.Row[2].Cards[game.Player1.Row[2].Cards.Count -2].Value)
                 {
-                    game.Player1Row.CenterStack2.CanBePlacedOn = true;
+                    game.Player1.Row[2].CanBePlacedOn = true;
                 }
             }
-            if (game.Player1Row.CenterStack3.Cards.Count >= 2)
+            if (game.Player1.Row[3].Cards.Count >= 2)
             {
-                if (game.Player1Row.CenterStack3.Cards.Last().Value == game.Player1Row.CenterStack3.Cards[game.Player1Row.CenterStack3.Cards.Count -2].Value)
+                if (game.Player1.Row[3].Cards.Last().Value == game.Player1.Row[3].Cards[game.Player1.Row[3].Cards.Count -2].Value)
                 {
-                    game.Player1Row.CenterStack3.CanBePlacedOn = true;
+                    game.Player1.Row[3].CanBePlacedOn = true;
                 }
             }
-            if (game.Player1Row.CenterStack4.Cards.Count >= 2)
+            if (game.Player1.Row[4].Cards.Count >= 2)
             {
-                if (game.Player1Row.CenterStack4.Cards.Last().Value == game.Player1Row.CenterStack4.Cards[game.Player1Row.CenterStack4.Cards.Count -2].Value)
+                if (game.Player1.Row[4].Cards.Last().Value == game.Player1.Row[4].Cards[game.Player1.Row[4].Cards.Count -2].Value)
                 {
-                    game.Player1Row.CenterStack4.CanBePlacedOn = true;
+                    game.Player1.Row[4].CanBePlacedOn = true;
                 } 
             }
 
-            if (game.Player2Row.CenterStack1.Cards.Count >= 2)
+            if (game.Player2.Row[1].Cards.Count >= 2)
             {
-                if (game.Player2Row.CenterStack1.Cards.Last().Value == game.Player2Row.CenterStack1.Cards[game.Player2Row.CenterStack1.Cards.Count -2].Value)
+                if (game.Player2.Row[1].Cards.Last().Value == game.Player2.Row[1].Cards[game.Player2.Row[1].Cards.Count -2].Value)
                 {
-                    game.Player2Row.CenterStack1.CanBePlacedOn = true;
+                    game.Player2.Row[1].CanBePlacedOn = true;
                 }
             }
-            if (game.Player2Row.CenterStack2.Cards.Count >= 2)
+            if (game.Player2.Row[2].Cards.Count >= 2)
             {
-                if (game.Player2Row.CenterStack2.Cards.Last().Value == game.Player2Row.CenterStack2.Cards[game.Player2Row.CenterStack2.Cards.Count -2].Value)
+                if (game.Player2.Row[2].Cards.Last().Value == game.Player2.Row[2].Cards[game.Player2.Row[2].Cards.Count -2].Value)
                 {
-                    game.Player2Row.CenterStack2.CanBePlacedOn = true;
+                    game.Player2.Row[2].CanBePlacedOn = true;
                 }
             }
-            if (game.Player2Row.CenterStack3.Cards.Count >= 2)
+            if (game.Player2.Row[3].Cards.Count >= 2)
             {
-                if (game.Player2Row.CenterStack3.Cards.Last().Value == game.Player2Row.CenterStack3.Cards[game.Player2Row.CenterStack3.Cards.Count -2].Value)
+                if (game.Player2.Row[3].Cards.Last().Value == game.Player2.Row[3].Cards[game.Player2.Row[3].Cards.Count -2].Value)
                 {
-                    game.Player2Row.CenterStack3.CanBePlacedOn = true;
+                    game.Player2.Row[3].CanBePlacedOn = true;
                 }
             }
-            if (game.Player2Row.CenterStack4.Cards.Count >= 2)
+            if (game.Player2.Row[4].Cards.Count >= 2)
             {
-                if (game.Player2Row.CenterStack4.Cards.Last().Value == game.Player2Row.CenterStack4.Cards[game.Player2Row.CenterStack4.Cards.Count -2].Value)
+                if (game.Player2.Row[4].Cards.Last().Value == game.Player2.Row[4].Cards[game.Player2.Row[4].Cards.Count -2].Value)
                 {
-                    game.Player2Row.CenterStack4.CanBePlacedOn = true;
+                    game.Player2.Row[4].CanBePlacedOn = true;
                 }
             }
 
@@ -566,55 +566,55 @@ namespace WebApplication1.Hubs
                 game.Player1.WantsReset = false;
                 game.Player2.WantsReset = false;
 
-                game.Player1.Deck.Cards.AddRange(game.Player1Row.CenterStack1.Cards);
-                game.Player1.Deck.Cards.AddRange(game.Player1Row.CenterStack2.Cards);
-                game.Player1.Deck.Cards.AddRange(game.Player1Row.CenterStack3.Cards);
-                game.Player1.Deck.Cards.AddRange(game.Player1Row.CenterStack4.Cards);
+                game.Player1.Deck.Cards.AddRange(game.Player1.Row[1].Cards);
+                game.Player1.Deck.Cards.AddRange(game.Player1.Row[2].Cards);
+                game.Player1.Deck.Cards.AddRange(game.Player1.Row[3].Cards);
+                game.Player1.Deck.Cards.AddRange(game.Player1.Row[4].Cards);
 
-                game.Player2.Deck.Cards.AddRange(game.Player2Row.CenterStack1.Cards);
-                game.Player2.Deck.Cards.AddRange(game.Player2Row.CenterStack2.Cards);
-                game.Player2.Deck.Cards.AddRange(game.Player2Row.CenterStack3.Cards);
-                game.Player2.Deck.Cards.AddRange(game.Player2Row.CenterStack4.Cards);
+                game.Player2.Deck.Cards.AddRange(game.Player2.Row[1].Cards);
+                game.Player2.Deck.Cards.AddRange(game.Player2.Row[2].Cards);
+                game.Player2.Deck.Cards.AddRange(game.Player2.Row[3].Cards);
+                game.Player2.Deck.Cards.AddRange(game.Player2.Row[4].Cards);
 
-                game.Player1Row.CenterStack1.Cards.Clear();
-                game.Player1Row.CenterStack2.Cards.Clear();
-                game.Player1Row.CenterStack3.Cards.Clear();
-                game.Player1Row.CenterStack4.Cards.Clear();
+                game.Player1.Row[1].Cards.Clear();
+                game.Player1.Row[2].Cards.Clear();
+                game.Player1.Row[3].Cards.Clear();
+                game.Player1.Row[4].Cards.Clear();
 
-                game.Player2Row.CenterStack1.Cards.Clear();
-                game.Player2Row.CenterStack2.Cards.Clear();
-                game.Player2Row.CenterStack3.Cards.Clear();
-                game.Player2Row.CenterStack4.Cards.Clear();
+                game.Player2.Row[1].Cards.Clear();
+                game.Player2.Row[2].Cards.Clear();
+                game.Player2.Row[3].Cards.Clear();
+                game.Player2.Row[4].Cards.Clear();
 
-                game.Player1Row.CenterStack1.Cards.Add(game.Player1.Deck.Draw());
-                game.Player1Row.CenterStack2.Cards.Add(game.Player1.Deck.Draw());
-                game.Player1Row.CenterStack3.Cards.Add(game.Player1.Deck.Draw());
-                game.Player1Row.CenterStack4.Cards.Add(game.Player1.Deck.Draw());
+                game.Player1.Row[1].Cards.Add(game.Player1.Deck.Draw());
+                game.Player1.Row[2].Cards.Add(game.Player1.Deck.Draw());
+                game.Player1.Row[3].Cards.Add(game.Player1.Deck.Draw());
+                game.Player1.Row[4].Cards.Add(game.Player1.Deck.Draw());
 
-                game.Player2Row.CenterStack1.Cards.Add(game.Player2.Deck.Draw());
-                game.Player2Row.CenterStack2.Cards.Add(game.Player2.Deck.Draw());
-                game.Player2Row.CenterStack3.Cards.Add(game.Player2.Deck.Draw());
-                game.Player2Row.CenterStack4.Cards.Add(game.Player2.Deck.Draw());
+                game.Player2.Row[1].Cards.Add(game.Player2.Deck.Draw());
+                game.Player2.Row[2].Cards.Add(game.Player2.Deck.Draw());
+                game.Player2.Row[3].Cards.Add(game.Player2.Deck.Draw());
+                game.Player2.Row[4].Cards.Add(game.Player2.Deck.Draw());
 
-                game.Player1Row.CenterStack1.CanBePlacedOn = false;
-                game.Player1Row.CenterStack2.CanBePlacedOn = false;
-                game.Player1Row.CenterStack3.CanBePlacedOn = false;
-                game.Player1Row.CenterStack4.CanBePlacedOn = false;
-                game.Player2Row.CenterStack1.CanBePlacedOn = false;
-                game.Player2Row.CenterStack2.CanBePlacedOn = false;
-                game.Player2Row.CenterStack3.CanBePlacedOn = false;
-                game.Player2Row.CenterStack4.CanBePlacedOn = false;
+                game.Player1.Row[1].CanBePlacedOn = false;
+                game.Player1.Row[2].CanBePlacedOn = false;
+                game.Player1.Row[3].CanBePlacedOn = false;
+                game.Player1.Row[4].CanBePlacedOn = false;
+                game.Player2.Row[1].CanBePlacedOn = false;
+                game.Player2.Row[2].CanBePlacedOn = false;
+                game.Player2.Row[3].CanBePlacedOn = false;
+                game.Player2.Row[4].CanBePlacedOn = false;
 
                 CheckPairs(game);
                 
-                var player1Stack1 = game.Player1Row.CenterStack1.Cards.Last().Value + game.Player1Row.CenterStack1.Cards.Last().Suit;
-                var player1Stack2 = game.Player1Row.CenterStack2.Cards.Last().Value + game.Player1Row.CenterStack2.Cards.Last().Suit;
-                var player1Stack3 = game.Player1Row.CenterStack3.Cards.Last().Value + game.Player1Row.CenterStack3.Cards.Last().Suit;
-                var player1Stack4 = game.Player1Row.CenterStack4.Cards.Last().Value + game.Player1Row.CenterStack4.Cards.Last().Suit;
-                var player2Stack1 = game.Player2Row.CenterStack1.Cards.Last().Value + game.Player2Row.CenterStack1.Cards.Last().Suit;
-                var player2Stack2 = game.Player2Row.CenterStack2.Cards.Last().Value + game.Player2Row.CenterStack2.Cards.Last().Suit;
-                var player2Stack3 = game.Player2Row.CenterStack3.Cards.Last().Value + game.Player2Row.CenterStack3.Cards.Last().Suit;
-                var player2Stack4 = game.Player2Row.CenterStack4.Cards.Last().Value + game.Player2Row.CenterStack4.Cards.Last().Suit;
+                var player1Stack1 = game.Player1.Row[1].Cards.Last().Value + game.Player1.Row[1].Cards.Last().Suit;
+                var player1Stack2 = game.Player1.Row[2].Cards.Last().Value + game.Player1.Row[2].Cards.Last().Suit;
+                var player1Stack3 = game.Player1.Row[3].Cards.Last().Value + game.Player1.Row[3].Cards.Last().Suit;
+                var player1Stack4 = game.Player1.Row[4].Cards.Last().Value + game.Player1.Row[4].Cards.Last().Suit;
+                var player2Stack1 = game.Player2.Row[1].Cards.Last().Value + game.Player2.Row[1].Cards.Last().Suit;
+                var player2Stack2 = game.Player2.Row[2].Cards.Last().Value + game.Player2.Row[2].Cards.Last().Suit;
+                var player2Stack3 = game.Player2.Row[3].Cards.Last().Value + game.Player2.Row[3].Cards.Last().Suit;
+                var player2Stack4 = game.Player2.Row[4].Cards.Last().Value + game.Player2.Row[4].Cards.Last().Suit;
                 await Clients.Client(game.Player1.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
                 await Clients.Client(game.Player2.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
                 await Clients.Client(game.Player1.ConnectionId).SendAsync("resetCounterToZero");
@@ -633,14 +633,14 @@ namespace WebApplication1.Hubs
             games[game.Player1.ConnectionId] = newGame;
 
             CheckPairs(newGame);
-            var player1Stack1 = newGame.Player1Row.CenterStack1.Cards.Last().Value + newGame.Player1Row.CenterStack1.Cards.Last().Suit;
-            var player1Stack2 = newGame.Player1Row.CenterStack2.Cards.Last().Value + newGame.Player1Row.CenterStack2.Cards.Last().Suit;
-            var player1Stack3 = newGame.Player1Row.CenterStack3.Cards.Last().Value + newGame.Player1Row.CenterStack3.Cards.Last().Suit;
-            var player1Stack4 = newGame.Player1Row.CenterStack4.Cards.Last().Value + newGame.Player1Row.CenterStack4.Cards.Last().Suit;
-            var player2Stack1 = newGame.Player2Row.CenterStack1.Cards.Last().Value + newGame.Player2Row.CenterStack1.Cards.Last().Suit;
-            var player2Stack2 = newGame.Player2Row.CenterStack2.Cards.Last().Value + newGame.Player2Row.CenterStack2.Cards.Last().Suit;
-            var player2Stack3 = newGame.Player2Row.CenterStack3.Cards.Last().Value + newGame.Player2Row.CenterStack3.Cards.Last().Suit;
-            var player2Stack4 = newGame.Player2Row.CenterStack4.Cards.Last().Value + newGame.Player2Row.CenterStack4.Cards.Last().Suit;
+            var player1Stack1 = newGame.Player1.Row[1].Cards.Last().Value + newGame.Player1.Row[1].Cards.Last().Suit;
+            var player1Stack2 = newGame.Player1.Row[2].Cards.Last().Value + newGame.Player1.Row[2].Cards.Last().Suit;
+            var player1Stack3 = newGame.Player1.Row[3].Cards.Last().Value + newGame.Player1.Row[3].Cards.Last().Suit;
+            var player1Stack4 = newGame.Player1.Row[4].Cards.Last().Value + newGame.Player1.Row[4].Cards.Last().Suit;
+            var player2Stack1 = newGame.Player2.Row[1].Cards.Last().Value + newGame.Player2.Row[1].Cards.Last().Suit;
+            var player2Stack2 = newGame.Player2.Row[2].Cards.Last().Value + newGame.Player2.Row[2].Cards.Last().Suit;
+            var player2Stack3 = newGame.Player2.Row[3].Cards.Last().Value + newGame.Player2.Row[3].Cards.Last().Suit;
+            var player2Stack4 = newGame.Player2.Row[4].Cards.Last().Value + newGame.Player2.Row[4].Cards.Last().Suit;
             await Clients.Client(newGame.Player1.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
             await Clients.Client(newGame.Player2.ConnectionId).SendAsync("drawGame", player1Stack1, player1Stack2, player1Stack3, player1Stack4, player2Stack1, player2Stack2, player2Stack3, player2Stack4);
             await Clients.Client(newGame.Player1.ConnectionId).SendAsync("resetCounterToZero");

@@ -19,6 +19,8 @@ namespace WebApplication1.Models
         public Player Opponent { get; set; }
         public DateTime RegisterTime { get; set; }
         public bool IsSearchingOpponent { get; set; }
-        public PlayerDeck Deck { get; set; }
+        public Deck Deck { get; set; }
+
+         public Dictionary<int,CenterStack> Row { get; set; }
     }
 }
